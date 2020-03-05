@@ -1,0 +1,134 @@
+<template>
+    <lightning-card title="Contact Sheet" icon-name="custom:custom22">
+
+            <lightning-accordion allow-multiple-sections-open onsectiontoggle={handleSectionToggle}
+            active-section-name={activeSections}>
+
+                <!-- Account Accordion Section -->
+                <lightning-accordion-section title="Account" name="A" label="Account">
+             
+                </lightning-accordion-section>
+
+                <!-- Contact Accordion Section -->
+                <lightning-accordion-section title="Contact" name="B" label="Contacts">
+                
+                    <!-- Contact Cards -->
+                    <template if:true={contacts.data}>
+
+                <ul class="slds-has-dividers_around-space">
+
+                    <!-- Loop Through data and display -->
+                    <template for:each={contacts.data} for:item="contact">
+                        <li class="slds-item" key={contact.Id}>
+                            <article class="slds-tile slds-tile_board">
+                                <h3 class="slds-tile__title slds-truncate" title="Anypoint Connectors">
+                                    <a href={contact.Id}>{contact.Name}</a>
+                                </h3>
+                                <div class="slds-tile__detail">
+                                    <!-- class="slds-region_narrow" -->
+                                    <dl class="slds-dl_horizontal">
+                                        <dt class="slds-dl_horizontal__label">Title:</dt>
+                                            <dd class="slds-dl_horizontal__detail">{contact.title}</dd>
+                                        <dt class="slds-dl_horizontal__label">Phone:</dt>
+                                            <dd class="slds-dl_horizontal__detail">
+                                                <lightning-click-to-dial value={contact.Phone} record-id={recordId}></lightning-click-to-dial>
+                                            </dd>
+                                        <dt class="slds-dl_horizontal__label">Mobile:</dt>
+                                            <dd class="slds-dl_horizontal__detail">
+                                                <lightning-click-to-dial value={contact.MobilePhone} record-id={recordId}></lightning-click-to-dial>
+                                        </dd>
+                                        <dt class="slds-dl_horizontal__label">Email:</dt>
+                                            <dd class="slds-dl_horizontal__detail">{contact.email}</dd>
+                                    </dl>
+                                </div>
+                            </article>
+                        </li>
+                    </template>
+
+                </ul>
+
+                    </template>
+
+                    </br></br>
+                    <!-- NEW CONTACT MODAL - Loads Modal -->
+                    <lightning-button label="New Contact" variant="brand" onclick={openmodal}></lightning-button>
+
+                </lightning-accordion-section>
+
+                <!-- Opportunity Accordion Section -->
+                <lightning-accordion-section title="Opportunity" name="C" label="Opportunity">
+
+                    <!-- Opportunity Fields -->
+                    </br>
+                    <p>{accountId}</p>
+                    <p>{name}</p>
+                    </br>
+
+                </lightning-accordion-section>
+        
+            </lightning-accordion>
+
+        <!-- </div> -->
+
+    </lightning-card>
+
+    <!-- MODAL -->
+
+    <template if:true={openmodel}>
+        <div class="demo-only" style="height: 640px;">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+
+                        <!-- TITLE -->
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Add Contact</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <!-- BODY -->
+
+                                <!-- CREATE CONTACT -->
+                                <lightning-card>
+                                    <div class="slds-m-around_medium">
+                                        <p class="slds-text-body_regular">Submit Contact Information to create a Contact and Contact Role for this Opportunity</p>
+                                    </div>
+                                   <div class="slds-m-around_medium">
+                                       <lightning-input label="First Name"></lightning-input>
+                                       <lightning-input label="Last Name" ></lightning-input>
+                                       <lightning-input label="Mobile"></lightning-input>
+                                   </div>
+                                </lightning-card>
+
+<!-- 
+                                <template>
+                                    <lightning-record-edit-form object-api-name="Contact" onsuccess={handleSuccess}>
+                                        <lightning-messages></lightning-messages>
+                                        <div class="slds-m-around_medium">
+                                            <lightning-input-field field-name='Id' value={contactId}></lightning-input-field>
+                                            <lightning-input-field field-name='LastName'></lightning-input-field>
+                                            <lightning-input-field field-name='FirstName'></lightning-input-field>
+                                            <lightning-input-field field-name='Email'></lightning-input-field>
+                                            <lightning-input-field field-name='AccountId'></lightning-input-field>
+                                 
+                                            <div class="slds-m-top_medium">
+                                                <lightning-button variant="brand" type="submit" name="save" label="Create Contact">
+                                                </lightning-button>
+                                            </div>
+                                        </div>
+                                    </lightning-record-edit-form>
+                                </template>
+-->
+
+                    </div>
+                    
+                    <!-- FOOTER -->
+                    <footer class="slds-modal__footer">
+                        <lightning-button label="Cancel" variant="neutral" onclick={closeModal}></lightning-button>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <lightning-button label="Create Contact" variant="brand" onclick={createContact}></lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </template>
+
+</template>

@@ -1,0 +1,21 @@
+<template>
+    <lightning-card>
+        <lightning-record-edit-form record-id={recordId} object-api-name="Opportunity" onsuccess={handleSuccess}
+            onsubmit={handleSubmit}>
+            <lightning-messages>
+            </lightning-messages>
+            <lightning-output-field field-name="Engagement_Status__c">
+            </lightning-output-field>
+            <lightning-input label="Engagement Status" value="Engagement_Status__c"></lightning-input>
+            <lightning-button class="slds-m-top_small" variant="brand" type="submit" name="update" label="Update">
+            </lightning-button>
+        </lightning-record-edit-form>
+    </lightning-card>
+</template>
+
+<!-- 
+<lightning-input
+label="Name"
+value={greeting}
+onchange={handleGreetingChange}
+></lightning-input> -->

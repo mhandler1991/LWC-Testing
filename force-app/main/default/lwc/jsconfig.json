@@ -1,0 +1,41 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "c/accountInformation": [
+                "accountInformation/accountInformation.js"
+            ],
+            "c/contactComponent": [
+                "contactComponent/contactComponent.js"
+            ],
+            "c/contactSheet": [
+                "contactSheet/contactSheet.js"
+            ],
+            "c/contactSheet1": [
+                "contactSheet1/contactSheet1.js"
+            ],
+            "c/lWCModal": [
+                "lWCModal/lWCModal.js"
+            ],
+            "c/activityList": [
+                "activityList/activityList.js"
+            ],
+            "c/accordion": [
+                "accordion/accordion.js"
+            ],
+            "c/recordUpdate": [
+                "recordUpdate/recordUpdate.js"
+            ]
+        }
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
+    }
+}

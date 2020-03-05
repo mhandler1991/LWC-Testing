@@ -1,0 +1,63 @@
+<template>
+    <lightning-card title="Contact Sheet" icon-name="custom:custom22">
+        <div class="slds-m-around_medium">
+
+            <template if:true={contacts.data}>
+                <!-- Loop Through data and display -->
+                <h1>For Loop Example</h1>
+                <template for:each={contacts.data} for:item="contact">
+                    <lightning-tile label={contact.name} key={contact.Id}>
+                        <p key={contact.Id}>{contact.Name}</p>
+                        <p key={contact.Id}>{contact.Title}</p>
+                        <p key={contact.Id}>
+                            <lightning-click-to-dial value={contact.Phone}></lightning-click-to-dial>
+                        </p>
+                    </lightning-tile>
+                </template>
+                <div class="demo-only" style="width:30rem">
+                    <article class="slds-tile">
+                        <h3 class="slds-tile__title slds-truncate" title="Salesforce UX">
+                            <a href="javascript:void(0);">Salesforce UX</a>
+                        </h3>
+                        <div class="slds-tile__detail">
+                            <dl class="slds-list_horizontal slds-wrap">
+                                <dt class="slds-item_label slds-text-color_weak slds-truncate" title="First Label">First
+                                    Label:</dt>
+                                <dd class="slds-item_detail slds-truncate" title="Description for first label">
+                                    Description for first label</dd>
+                                <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Second Label">
+                                    Second Label:</dt>
+                                <dd class="slds-item_detail slds-truncate" title="Description for second label">
+                                    Description for second label</dd>
+                            </dl>
+                        </div>
+                    </article>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
+<!-- 
+<div class="slds-p-around_medium lgc-bg">
+    <lightning-tile label="Lightning component team" href="/path/to/somewhere">
+        <p class="slds-truncate" title="7 Members">7 Members</p>
+    </lightning-tile>
+</div> 
+-->
+<!-- 
+<div class="demo-only" style="width:30rem">
+    <article class="slds-tile">
+    <h3 class="slds-tile__title slds-truncate" title="Salesforce UX">
+    <a href="javascript:void(0);">Salesforce UX</a>
+    </h3>
+    <div class="slds-tile__detail">
+    <dl class="slds-list_horizontal slds-wrap">
+    <dt class="slds-item_label slds-text-color_weak slds-truncate" title="First Label">First Label:</dt>
+    <dd class="slds-item_detail slds-truncate" title="Description for first label">Description for first label</dd>
+    <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Second Label">Second Label:</dt>
+    <dd class="slds-item_detail slds-truncate" title="Description for second label">Description for second label</dd>
+    </dl>
+    </div>
+    </article>
+    </div> 
+-->
