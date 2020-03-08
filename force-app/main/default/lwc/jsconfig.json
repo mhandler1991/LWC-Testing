@@ -26,6 +26,9 @@
             ],
             "c/recordUpdate": [
                 "recordUpdate/recordUpdate.js"
+            ],
+            "c/relatedOpportunities": [
+                "relatedOpportunities/relatedOpportunities.js"
             ]
         }
     },

@@ -1,0 +1,24 @@
+<template>
+    
+    <lightning-card title={oppName} icon-name="standrd:opportunity">
+
+        <div class="slds-m-around_medium">
+
+            <!-- Show information when data is loaded -->
+            <template if:true={opp.data}>
+                <p>{accountId}</p> 
+                <p>{accName}</p>
+            </template>
+
+            <!-- Data failed to Load -->
+            <template if:true={opp.error}>
+                <div class="slds-text-color_error">
+					An error occurred while loading the related Information
+				</div>
+            </template>
+
+        </div>
+
+    </lightning-card>
+    
+</template>
