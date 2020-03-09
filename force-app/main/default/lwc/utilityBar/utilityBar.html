@@ -1,0 +1,32 @@
+<template>
+    <lightning-card>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_2-of-3">
+
+                    <lightning-button variant="brand" label="Send Funding Options" title="Primary action"
+                        onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button variant="brand" label="Create Exception Request" title="Primary action"
+                        onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button variant="brand" label="Application" title="Primary action" onclick={handleClick}
+                        class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button variant="brand" label="Send DLP" title="Primary action" onclick={handleClick}
+                        class="slds-m-left_x-small"></lightning-button>
+
+                        <p>{oppStage}</p>
+
+            </div>
+            <div class="slds-col slds-size_1-of-3">
+                <lightning-card title='File Uploader' icon-name="custom:custom19">
+                    <lightning-file-upload
+                            label="Attach receipt"
+                            name="fileUploader"
+                            accept={acceptedFormats}
+                            record-id={recordId}
+                            onuploadfinished={handleUploadFinished}
+                            multiple>
+                    </lightning-file-upload>
+                </lightning-card>
+            </div>
+        </div>
+    </lightning-card>
+</template>

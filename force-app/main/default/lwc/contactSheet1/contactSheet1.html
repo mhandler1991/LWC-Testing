@@ -7,6 +7,25 @@
                 <!-- Account Accordion Section -->
                 <lightning-accordion-section title="Account" name="A" label="Account">
              
+                    <article class="slds-tile slds-tile_board">
+                        <h3 class="slds-tile__title slds-truncate" title="Anypoint Connectors">
+                            <a href=""></a>
+                        </h3>
+                        <div class="slds-tile__detail">
+                            <!-- class="slds-region_narrow" -->
+                            <dl class="slds-dl_horizontal">
+                                <dt class="slds-dl_horizontal__label">Website:</dt>
+                                    <dd class="slds-dl_horizontal__detail">{accWebsite}</dd>
+                                <dt class="slds-dl_horizontal__label">Main Phone:</dt>
+                                    <dd class="slds-dl_horizontal__detail">
+                                        <lightning-click-to-dial value={accPhone} record-id={recordId}></lightning-click-to-dial>
+                                    </dd>
+                                <dt class="slds-dl_horizontal__label">Billing Address:</dt>
+                                    <dd class="slds-dl_horizontal__detail">{accBillingAddress}</dd>
+                            </dl>
+                        </div>
+                    </article>
+
                 </lightning-accordion-section>
 
                 <!-- Contact Accordion Section -->
@@ -20,12 +39,18 @@
                     <!-- Loop Through data and display -->
                     <template for:each={contacts.data} for:item="contact">
                         <li class="slds-item" key={contact.Id}>
-                            <article class="slds-tile slds-tile_board">
-                                <h3 class="slds-tile__title slds-truncate" title="Anypoint Connectors">
-                                    <a href={contact.Id}>{contact.Name}</a>
-                                </h3>
+                            <lightning-card title={contact.Name} href={contact.Id}>
+                                <!-- <a href={contact.Id}>{contact.Name}</a> -->
+                                <div slot="actions">
+                                    <lightning-button-icon
+                                    icon-name="utility:edit"
+                                    variant="bare"
+                                    alternative-text="Open record"
+                                    onclick={handleOpenRecordClick}
+                                    value={contact.Id}>
+                                    </lightning-button-icon>
+                                </div>
                                 <div class="slds-tile__detail">
-                                    <!-- class="slds-region_narrow" -->
                                     <dl class="slds-dl_horizontal">
                                         <dt class="slds-dl_horizontal__label">Title:</dt>
                                             <dd class="slds-dl_horizontal__detail">{contact.title}</dd>
@@ -41,7 +66,29 @@
                                             <dd class="slds-dl_horizontal__detail">{contact.email}</dd>
                                     </dl>
                                 </div>
-                            </article>
+                            </lightning-card>
+                            <!-- <article class="slds-tile slds-tile_board">
+                                <h3 class="slds-tile__title slds-truncate" title="Anypoint Connectors">
+                                    <a href={contact.Id}>{contact.Name}</a>
+                                </h3>
+                                <div class="slds-tile__detail">
+
+                                    <dl class="slds-dl_horizontal">
+                                        <dt class="slds-dl_horizontal__label">Title:</dt>
+                                            <dd class="slds-dl_horizontal__detail">{contact.title}</dd>
+                                        <dt class="slds-dl_horizontal__label">Phone:</dt>
+                                            <dd class="slds-dl_horizontal__detail">
+                                                <lightning-click-to-dial value={contact.Phone} record-id={recordId}></lightning-click-to-dial>
+                                            </dd>
+                                        <dt class="slds-dl_horizontal__label">Mobile:</dt>
+                                            <dd class="slds-dl_horizontal__detail">
+                                                <lightning-click-to-dial value={contact.MobilePhone} record-id={recordId}></lightning-click-to-dial>
+                                        </dd>
+                                        <dt class="slds-dl_horizontal__label">Email:</dt>
+                                            <dd class="slds-dl_horizontal__detail">{contact.email}</dd>
+                                    </dl>
+                                </div>
+                            </article> -->
                         </li>
                     </template>
 
@@ -52,17 +99,6 @@
                     </br></br>
                     <!-- NEW CONTACT MODAL - Loads Modal -->
                     <lightning-button label="New Contact" variant="brand" onclick={openmodal}></lightning-button>
-
-                </lightning-accordion-section>
-
-                <!-- Opportunity Accordion Section -->
-                <lightning-accordion-section title="Opportunity" name="C" label="Opportunity">
-
-                    <!-- Opportunity Fields -->
-                    </br>
-                    <p>{accountId}</p>
-                    <p>{name}</p>
-                    </br>
 
                 </lightning-accordion-section>
         

@@ -31,13 +31,11 @@ const columns = [
 ];
 
 const FIELDS = [
-    'Opportunity.Name',
-    'Opportunity.AccountId',
+    'Opportunity.Account__r.Website',
+    'Opportunity.Account__r.Phone',
+    'Opportunity.Account__r.BillingAddress',
 ];
 
-const ACCFIELDS = [
-    'Account.Name'
-]
 
 // *********************
 // EXPORT
@@ -45,7 +43,7 @@ const ACCFIELDS = [
 
 export default class ContactSheet1 extends LightningElement {
 
-    @track activeSections = ['A', 'B', 'C']; //Default Open Accordion Sections 
+    @track activeSections = ['A', 'B']; //Default Open Accordion Sections 
     @api recordId; // Grab the Record Id
     @api objectApiName; // Grab the Objects API Name
     @track columns = columns; // ASSIGN COLUMNS VAR
@@ -59,27 +57,17 @@ export default class ContactSheet1 extends LightningElement {
     @wire(getRecord, {recordId: '$recordId', fields: FIELDS})
     opportunity;
 
-    // Define Opportunity Name
-    get name() {
-        return getFieldValue(this.opportunity.data, 'Opportunity.Name');
+    get accWebsite() {
+        return getFieldValue(this.opportunity.data, 'Opportunity.Account__r.Website');
     }
 
-    // Define Account Id
-    get accountId() {
-        return getFieldValue(this.opportunity.data, 'Opportunity.AccountId');
+    get accPhone() {
+        return getFieldValue(this.opportunity.data, 'Opportunity.Account__r.Phone');
     }
 
-    // *********************
-    // Get Account Record Information
-    // *********************
-
-    // @wire(getRecord, {recordId: accountId(), fields: ACCFIELDS})
-    // Account;
-
-    // //Define Account Name
-    // get accountName() {
-    //     return getFieldValue(this.opportunity.data, 'Account.Name')
-    // }
+    get accBillingAddress() {
+        return getFieldValue(this.opportunity.data, 'Opportunity.Account__r.BillingAddress');
+    }
 
     // *********************
     // Modal Actions
@@ -98,6 +86,16 @@ export default class ContactSheet1 extends LightningElement {
     // Handle Accordion
     handleSectionToggle(event) {
         const openSections = event.detail.openSections;
+    }
+
+    // Contact Record Open Handler
+    handleOpenRecordClick() {
+        console.log("Clicked!")
+        console.log(target.value);
+        const selectEvent = new CustomEvent('contactView', {
+            detail: target.value
+        });
+        this.dispatchEvent(selectEvent);
     }
 
 }

@@ -29,6 +29,9 @@
             ],
             "c/relatedOpportunities": [
                 "relatedOpportunities/relatedOpportunities.js"
+            ],
+            "c/utilityBar": [
+                "utilityBar/utilityBar.js"
             ]
         }
     },
