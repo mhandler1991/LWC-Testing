@@ -100,6 +100,10 @@ export default class RelatedOpportunities extends LightningElement {
         return getFieldValue(this.relatedOpportunity.data, 'Opportunity.Previous_Opportunity__r.NF_Maturity_Date__c');
     }
 
+    connectedCallback(){
+        console.log("RELATED OPPORTUNITY LOGGING:");
+        console.log(this);
+    }
 
     // *********************
     // ACCORDION HANDLER

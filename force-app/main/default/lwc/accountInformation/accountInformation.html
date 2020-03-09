@@ -1,3 +1,23 @@
 <template>
-    <h1>Hello</h1>
+
+    <lightning-card title={accountName} value={accountId} icon-name="standard:account">
+
+            <br>
+                <div class="slds-tile__detail">
+                    <dl class="slds-dl_inline">
+                        <dt class="slds-dl_inline__label">Website:</dt>
+                            <dd class="slds-dl_inline__detail">
+                                <a href={acocuntWebsite}>{accountWebsite}</a>
+                            </dd>
+                        <dt class="slds-dl_inline__label">Main Phone:</dt>
+                            <dd class="slds-dl_inline__detail">
+                                <lightning-click-to-dial value={accountPhone} record-id={recordId}>{accountPhone}</lightning-click-to-dial>
+                            </dd>
+                        <!-- <dt class="slds-dl_inline__label">Billing Address:</dt>
+                            <dd class="slds-dl_inline__detail">{oppAdd}</dd>    -->
+                    </dl>
+                </div>
+
+    </lightning-card>
+
 </template>
