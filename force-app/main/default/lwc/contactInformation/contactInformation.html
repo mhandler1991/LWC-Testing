@@ -1,0 +1,152 @@
+<template>
+
+    <lightning-card title="Related Contacts" value={accountId} icon-name="standard:contact">
+
+        <div slot="actions">
+            <lightning-button-icon icon-name="utility:new" variant="bare" alternative-text="Open record" size="Large"
+                onclick={openmodal}>
+            </lightning-button-icon>
+        </div>
+        <!-- Spacing -->
+        <br>
+
+        <template if:true={contacts.data}>
+
+            <ul class="slds-has-dividers_around-space">
+
+                <!-- Loop Through data and display -->
+                <template for:each={contacts.data} for:item="contact">
+                    <li class="slds-item" key={contact.Id}>
+                        <lightning-card title={contact.Name} href={contact.Id}>
+                            <!-- <a href={contact.Id}>{contact.Name}</a> -->
+                            <div slot="actions">
+                                <lightning-button-icon icon-name="utility:edit" variant="bare"
+                                    alternative-text="Open record" onclick={navigateToRecordViewPage} value={contact.Id}
+                                    data-id={contact.Id}  target="_blank" >
+                                </lightning-button-icon>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <dl class="slds-dl_horizontal">
+                                    <dt class="slds-dl_horizontal__label">Title:</dt>
+                                    <dd class="slds-dl_horizontal__detail">{contact.title}</dd>
+                                    <dt class="slds-dl_horizontal__label">Phone:</dt>
+                                    <dd class="slds-dl_horizontal__detail">
+                                        <lightning-click-to-dial value={contact.Phone} record-id={recordId}>
+                                        </lightning-click-to-dial>
+                                        <lightning-button-icon icon-name="utility:engage" value={contact.Phone}
+                                            variant="bare" alternative-text="Settings" title="Settings"
+                                            class="slds-m-left_medium" onclick={openMssg} if:true={contact.Phone}>
+                                        </lightning-button-icon>
+                                    </dd>
+                                    <dt class="slds-dl_horizontal__label">Mobile:</dt>
+                                    <dd class="slds-dl_horizontal__detail">
+                                        <lightning-click-to-dial value={contact.MobilePhone} record-id={recordId}>
+                                        </lightning-click-to-dial>
+                                        <lightning-button-icon icon-name="utility:engage" value={contact.MobilePhone}
+                                            variant="bare" alternative-text="Settings" title="Settings"
+                                            class="slds-m-left_medium" onclick={openMssg} if:true={contact.MobilePhone}>
+                                        </lightning-button-icon>
+                                    </dd>
+                                    <dt class="slds-dl_horizontal__label">Email:</dt>
+                                    <dd class="slds-dl_horizontal__detail">{contact.email}</dd>
+                                </dl>
+                            </div>
+                        </lightning-card>
+                    </li>
+                </template>
+
+            </ul>
+
+        </template>
+
+
+    </lightning-card>
+
+    <!-- ******************* -->
+    <!-- MODAL CREATE CONTACT-->
+    <!-- ******************* -->
+
+    <template if:true={openmodel}>
+        <div class="demo-only" style="height: 640px;">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+
+                        <!-- TITLE -->
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Add Contact</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <!-- BODY -->
+
+                        <!-- CREATE CONTACT -->
+                        <lightning-card>
+                            <div class="slds-m-around_medium">
+                                <p class="slds-text-body_regular">Submit Contact Information to create a Contact and
+                                    Contact Role for this Opportunity</p>
+                            </div>
+                            <div class="slds-m-around_medium">
+                                <lightning-input label="First Name"></lightning-input>
+                                <lightning-input label="Last Name"></lightning-input>
+                                <lightning-input label="Mobile"></lightning-input>
+                            </div>
+                        </lightning-card>
+                    </div>
+
+                    <!-- FOOTER -->
+                    <footer class="slds-modal__footer">
+                        <lightning-button label="Cancel" variant="neutral" onclick={closeModal}></lightning-button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <lightning-button label="Create Contact" variant="brand" onclick={createContact}>
+                        </lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </template>
+
+    <!-- ******************* -->
+    <!-- MODAL SEND MESSAGE -->
+    <!-- ******************* -->
+
+    <template if:true={sendMssg}>
+        <div class="demo-only" style="height: 640px;">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+
+                        <!-- TITLE -->
+                        <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">Send Message</h2>
+                    
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                        <!-- BODY -->
+
+                        <!-- Send Message -->
+                        <lightning-card>
+                            <div class="slds-m-around_medium">
+                                <p class="slds-text-body_regular">Send Message</p>
+                            </div>
+                            <div class="slds-m-around_medium">
+                                <lightning-input label="Message"></lightning-input>
+                            </div>
+                        </lightning-card>
+                    </div>
+
+                    <!-- FOOTER -->
+                    <footer class="slds-modal__footer">
+                        <lightning-button label="Cancel" variant="neutral" onclick={closeMssg}></lightning-button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <lightning-button label="Send Message" variant="brand" onclick={sendMessageClick}>
+                        </lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </template>
+
+
+</template>

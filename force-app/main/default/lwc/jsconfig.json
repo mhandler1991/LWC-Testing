@@ -32,6 +32,12 @@
             ],
             "c/utilityBar": [
                 "utilityBar/utilityBar.js"
+            ],
+            "c/contactInformation": [
+                "contactInformation/contactInformation.js"
+            ],
+            "c/opportunitiesClosedWon": [
+                "opportunitiesClosedWon/opportunitiesClosedWon.js"
             ]
         }
     },

@@ -1,4 +1,3 @@
-
 // *********************
 // IMPORTS
 // *********************
@@ -8,6 +7,9 @@ import { LightningElement, wire, api, track } from 'lwc';
 import getContactList from '@salesforce/apex/ContactList_Opp.getContactList';
 // Import Record Information
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
+import { NavigationMixin } from 'lightning/navigation';
+
+// import sendMessage from '@salesforce/apex/TwilioSendSMS';
 
 
 // // CREATE CONTACT RECORD
@@ -22,7 +24,7 @@ import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
 
 // DataTable Columns
 const columns = [
-    // { label: 'Id', fieldName: 'Id' },
+    { label: 'Id', fieldName: 'Id' },
     { label: 'Name', fieldName: 'Name'},
     { label: 'Title', fieldName: 'Title'},
     { label: 'Phone', fieldName: 'Phone', type: 'phone' },
@@ -30,18 +32,11 @@ const columns = [
     { label: 'Mobile', fieldName: 'MobilePhone', type: 'phone'}
 ];
 
-const FIELDS = [
-    'Opportunity.Account__r.Website',
-    'Opportunity.Account__r.Phone',
-    'Opportunity.Account__r.BillingAddress',
-];
-
-
 // *********************
 // EXPORT
 // *********************
 
-export default class ContactSheet1 extends LightningElement {
+export default class ContactInformation extends LightningElement {
 
     @track activeSections = ['A', 'B']; //Default Open Accordion Sections 
     @api recordId; // Grab the Record Id
@@ -54,25 +49,7 @@ export default class ContactSheet1 extends LightningElement {
     @wire(getContactList, {recordId: '$recordId'}) contacts;
 
     // *********************
-    // Get Opportunity Record Information
-    // *********************
-    @wire(getRecord, {recordId: '$recordId', fields: FIELDS})
-    opportunity;
-
-    get accWebsite() {
-        return getFieldValue(this.opportunity.data, 'Opportunity.Account__r.Website');
-    }
-
-    get accPhone() {
-        return getFieldValue(this.opportunity.data, 'Opportunity.Account__r.Phone');
-    }
-
-    get accBillingAddress() {
-        return getFieldValue(this.opportunity.data, 'Opportunity.Account__r.BillingAddress');
-    }
-
-    // *********************
-    // Modal Actions
+    // Modal Actions - Create Contact
     // *********************
 
     // Open Modal - Create Contact
@@ -86,40 +63,59 @@ export default class ContactSheet1 extends LightningElement {
     } 
 
     // *********************
+    // Modal Actions - Send Message
+    // *********************
 
-    // Open Modal - Send Message
+    // Open Modal - Create Contact
     openMssg() {
-        this.openmodel = true
+        this.sendMssg = true
     }
-    
-    // Close Modal - Send Message
+
+    // Close Modal - Creat Contact
     closeMssg() {
-        this.openmodel = false
+        this.sendMssg = false
     } 
 
-
-    // *********************
-    // Accordion
-    // *********************
-
-
-    // Handle Accordion
-    handleSectionToggle(event) {
-        const openSections = event.detail.openSections;
-    }
-
+    
     // *********************
     // Open SubTab -- NOT WORKING
     // *********************
 
     // Contact Record Open Handler
-    handleOpenRecordClick() {
-        console.log("Clicked!")
-        console.log(target.value);
-        const selectEvent = new CustomEvent('contactView', {
-            detail: target.value
+    // handleOpenRecordClick() {
+    //     console.log("Clicked!")
+    //     console.log(target.value);
+    //     const selectEvent = new CustomEvent('contactView', {
+    //         detail: target.value
+    //     });
+    //     this.dispatchEvent(selectEvent);
+    // }
+
+    navigateToRecordViewPage(event) {
+        console.log("CLICKED!");
+        console.log(event.target.dataset.id);
+        console.log(this);
+        this[NavigationMixin.Navigate]({
+            type: 'standard__recordPage',
+            attributes: {
+                recordId: event.target.dataset.id,
+                actionName: 'view'
+            }
         });
-        this.dispatchEvent(selectEvent);
     }
 
+    // Send SMS Message through Twilio
+    // sendMessageClick() {
+    //     sendMessage({
+    //         Message: "123",
+    //         ToMobileNumber: "6507592961"
+    //     })
+    //     .then({
+
+    //     })
+    //     .catch({
+
+    //     });
+    // }
 }
+

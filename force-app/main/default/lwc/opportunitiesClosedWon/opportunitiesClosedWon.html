@@ -1,0 +1,37 @@
+<template>
+
+    <lightning-card title="Closed Won Opportunities" icon-name="standard:opportunity">
+        <div>
+            <p>{nameField}</p>
+            <p>{accId}</p>
+        </div>
+
+        <template if:true={opportunities.data}>
+
+            <ul class="slds-has-dividers_around-space">
+
+                <template for:each={contacts.data} for:item="contact">
+                    
+                    <li class="slds-item" key={opportunities.id}>
+
+                        <lightning-card title={opportunities.Name} href={opportunities.Id} icon-name="standard:opportunity">
+
+                            <div class="slds-title__detail">
+                                <dl class="slds-dl_horizontal">
+                                    <dt class="slds-dl_horizontal__label">Name:</dt>
+                                        <dd class="slds-dl_horizontal__detail">{opportunities.Name}</dd>
+                                </dl>
+                            </div>
+
+                        </lightning-card>
+                    
+                    </li>
+                </template>
+
+            </ul>
+
+        </template>
+
+    </lightning-card>
+    
+</template>
