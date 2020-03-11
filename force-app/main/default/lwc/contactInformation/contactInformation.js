@@ -36,7 +36,7 @@ import { NavigationMixin } from 'lightning/navigation';
 // EXPORT
 // *********************
 
-export default class ContactInformation extends LightningElement {
+export default class ContactInformation extends NavigationMixin(LightningElement) {
 
     @track activeSections = ['A', 'B']; //Default Open Accordion Sections 
     @api recordId; // Grab the Record Id
@@ -79,43 +79,18 @@ export default class ContactInformation extends LightningElement {
 
     
     // *********************
-    // Open SubTab -- NOT WORKING
+    // Open SubTab
     // *********************
-
-    // Contact Record Open Handler
-    // handleOpenRecordClick() {
-    //     console.log("Clicked!")
-    //     console.log(target.value);
-    //     const selectEvent = new CustomEvent('contactView', {
-    //         detail: target.value
-    //     });
-    //     this.dispatchEvent(selectEvent);
-    // }
-
     navigateToRecordViewPage(event) {
-        console.log("CLICKED!");
-        console.log(event.target.dataset.id);
-        this[NavigationMixin.Navigate]({
-            type: 'standard__recordPage',
-            attributes: {
-                recordId: event.target.dataset.id,
-                actionName: 'view'
-            }
-        });
-    }
+    this[NavigationMixin.Navigate]({
+        type: 'standard__recordPage',
+        attributes: {
+            recordId: event.target.dataset.id,
+            objectApiName: 'Contact',
+            actionName: 'view'
+        },
+    });
+}
 
-    // Send SMS Message through Twilio
-    // sendMessageClick() {
-    //     sendMessage({
-    //         Message: "123",
-    //         ToMobileNumber: "6507592961"
-    //     })
-    //     .then({
-
-    //     })
-    //     .catch({
-
-    //     });
-    // }
 }
 
