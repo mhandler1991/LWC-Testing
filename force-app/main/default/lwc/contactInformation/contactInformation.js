@@ -46,7 +46,8 @@ export default class ContactInformation extends LightningElement {
     @track openmodel = false; //Default Model Closed - Model Button has to be clicked
     @track sendMssg = false; //Default Model Closed - Model Button has to be clicked
 
-    @wire(getContactList, {recordId: '$recordId'}) contacts;
+    @wire(getContactList, {recordId: '$recordId'}) 
+    contacts;
 
     // *********************
     // Modal Actions - Create Contact
@@ -94,7 +95,6 @@ export default class ContactInformation extends LightningElement {
     navigateToRecordViewPage(event) {
         console.log("CLICKED!");
         console.log(event.target.dataset.id);
-        console.log(this);
         this[NavigationMixin.Navigate]({
             type: 'standard__recordPage',
             attributes: {

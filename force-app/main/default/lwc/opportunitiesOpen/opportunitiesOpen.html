@@ -1,10 +1,6 @@
 <template>
 
-    <lightning-card title="Closed Won Opportunities" icon-name="standard:opportunity">
-        <!-- <div>
-            <p>{nameField}</p>
-            <p>{accId}</p>
-        </div> -->
+    <lightning-card title="Open Opportunities" icon-name="standard:opportunity">
 
         <template if:true={opportunities.data}>
 
@@ -20,8 +16,8 @@
                                 <dl class="slds-dl_horizontal">
                                     <dt class="slds-dl_horizontal__label">Amount:</dt>
                                         <dd class="slds-dl_horizontal__detail">{opportunity.Amount}</dd>
-                                    <dt class="slds-dl_horizontal__label">Date:</dt>
-                                        <dd class="slds-dl_horizontal__detail">{opportunity.Date}</dd>
+                                    <dt class="slds-dl_horizontal__label">Stage:</dt>
+                                        <dd class="slds-dl_horizontal__detail">{opportunity.StageName}</dd>
                                 </dl>
                             </div>
 

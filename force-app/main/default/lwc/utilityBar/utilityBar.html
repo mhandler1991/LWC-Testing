@@ -1,18 +1,31 @@
 <template>
     <lightning-card>
+
+            <!-- <lightning-progress-indicator current-step="3" type="path" variant="base">
+                <lightning-progress-step label="Contacted" value="1"></lightning-progress-step>
+                <lightning-progress-step label="Open" value="2"></lightning-progress-step>
+                <lightning-progress-step label="Unqualified" value="3"></lightning-progress-step>
+                <lightning-progress-step label="Nurturing" value="4"></lightning-progress-step>
+                <lightning-progress-step label="Closed" value="5"></lightning-progress-step>
+            </lightning-progress-indicator> -->
+
         <div class="slds-grid slds-gutters">
-            <div class="slds-col slds-size_2-of-3">
+            <div class="slds-col slds-size_2-of-3 lbg">
                    
-                    <lightning-button-group>
+                <div class="slds-align_absolute-center lbg">
+
+                    <lightning-button-group class="lbg">
                         <lightning-button if:true={stage3} label="Send Funding Options"></lightning-button>
                         <lightning-button if:true={stage2} label="Create Exception Request"></lightning-button>
                         <lightning-button if:true={stage0} label="Application"></lightning-button>
                         <lightning-button if:true={stage0} label="Send DLP"></lightning-button>
-                    </lightning-button-group>                    
+                    </lightning-button-group>
+                
+                </div>                    
 
             </div>
-            <div class="slds-col slds-size_1-of-3">
-                <lightning-card title='File Uploader' icon-name="custom:custom19">
+            <div class="slds-col slds-size_1-of-3 lbg">
+                <lightning-card>
                     <lightning-file-upload
                             label="Attach receipt"
                             name="fileUploader"
