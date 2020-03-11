@@ -10,16 +10,16 @@
 
             <ul class="slds-has-dividers_around-space">
 
-                <template for:each={contacts.data} for:item="contact">
+                <template for:each={opportunities.data} for:item="opportunity">
                     
-                    <li class="slds-item" key={opportunities.id}>
+                    <li class="slds-item" key={opportunity.Id}>
 
-                        <lightning-card title={opportunities.Name} href={opportunities.Id} icon-name="standard:opportunity">
+                        <lightning-card title={opportunity.Name} href={opportunity.Id} icon-name="standard:opportunity">
 
                             <div class="slds-title__detail">
                                 <dl class="slds-dl_horizontal">
                                     <dt class="slds-dl_horizontal__label">Name:</dt>
-                                        <dd class="slds-dl_horizontal__detail">{opportunities.Name}</dd>
+                                        <dd class="slds-dl_horizontal__detail">{opportunity.Name}</dd>
                                 </dl>
                             </div>
 

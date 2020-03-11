@@ -2,24 +2,13 @@
     <lightning-card>
         <div class="slds-grid slds-gutters">
             <div class="slds-col slds-size_2-of-3">
-
-                    <!-- <lightning-button variant="brand" label="Send Funding Options" title="Primary action"
-                        onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
-                    <lightning-button variant="brand" label="Create Exception Request" title="Primary action"
-                        onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
-                    <lightning-button variant="brand" label="Application" title="Primary action" onclick={handleClick}
-                        class="slds-m-left_x-small"></lightning-button>
-                    <lightning-button variant="brand" label="Send DLP" title="Primary action" onclick={handleClick}
-                        class="slds-m-left_x-small"></lightning-button> -->
-                    
+                   
                     <lightning-button-group>
-                        <lightning-button label="Send Funding Options"></lightning-button>
-                        <lightning-button label="Create Exception Request"></lightning-button>
-                        <lightning-button label="Application"></lightning-button>
-                        <lightning-button label="Send DLP"></lightning-button>
-                    </lightning-button-group>
-
-                    <p>{oppStage}</p>
+                        <lightning-button if:true={stage3} label="Send Funding Options"></lightning-button>
+                        <lightning-button if:true={stage2} label="Create Exception Request"></lightning-button>
+                        <lightning-button if:true={stage0} label="Application"></lightning-button>
+                        <lightning-button if:true={stage0} label="Send DLP"></lightning-button>
+                    </lightning-button-group>                    
 
             </div>
             <div class="slds-col slds-size_1-of-3">

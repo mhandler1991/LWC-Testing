@@ -33,16 +33,19 @@ export default class OpportunitiesClosedWon extends LightningElement {
             this.accId = getFieldValue(data, ACC_ID);
 
             // Log Values for Opportunity Name
+            console.log("Opportunity Name Values:");
             console.log(this.nameField);
             name = this.nameField;
             console.log(name);
 
             // Log Values for Account Id of Opportunity
+            console.log("Account Id Values:")
             console.log(this.accId);
             accountId = this.accId;
             console.log(accountId);
 
         } else if (error) {
+
             // Log Error
             console.log(error);
         }
@@ -50,15 +53,24 @@ export default class OpportunitiesClosedWon extends LightningElement {
 
     // Grab related Opportunities
     @wire(getOppList, {recordId: '$accId'}) 
-    opportunities({error, data}){
+    opportunities
+    ({error, data}){
         if(data){
+
+            // Log Values for Returned Opp Data
+            console.log("Data Returned from Opps Query:")
             console.log(data);
-        } else if(error){
+        } 
+        else if(error){
+
+            // Log Error
             console.log(error);
-        } else {
-            console.log("Account ID:");
-            console.log(accountId)
-        }
+        } 
+
+        // else {
+        //     console.log("Account ID:");
+        //     console.log(accountId)
+        // }
     }
 
 }
