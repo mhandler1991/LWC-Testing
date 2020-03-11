@@ -10,13 +10,8 @@ import OPP_NAME from '@salesforce/schema/Opportunity.Name';
 import ACC_ID from '@salesforce/schema/Opportunity.AccountId';
 
 // Define Variables
-name;
-accountId;
-
-const columns = [
-    { label: 'Id', fieldName: 'Id' },
-    { label: 'Name', fieldName: 'Name'},
-];
+var name;
+var accountId;
 
 export default class OpportunitiesClosedWon extends LightningElement {
 
@@ -25,15 +20,15 @@ export default class OpportunitiesClosedWon extends LightningElement {
     // Grab Objects API Name
     @api objectApiName;
     // Track Fields
-    @api nameField;
-    @api accId;
-    @track columns;
+    @track nameField;
+    @track accId;
+
+    name;
+    accountId;
 
     @wire(getRecord, {recordId: '$recordId', fields: [OPP_NAME, ACC_ID] })
     opportunity({error, data}) {
         if(data) {
-
-            // Define Values
             this.nameField = getFieldValue(data, OPP_NAME);
             this.accId = getFieldValue(data, ACC_ID);
 
@@ -48,53 +43,22 @@ export default class OpportunitiesClosedWon extends LightningElement {
             console.log(accountId);
 
         } else if (error) {
-
             // Log Error
             console.log(error);
         }
     }
 
     // Grab related Opportunities
-    // @wire(getOppList, {recordId: '0016g00000AhoV1AAJ'}) 
-    // opportunities({error, data}){
-
-    //     if(data){
-
-    //         console.log(data);
-
-    //     } else if(error){
-
-    //         console.log(error);
-
-    //     } else {
-
-    //         console.log("Account ID:");
-    //         console.log(accountId);
-    //         console.log(this);
-    //         console.log(JSON.stringify(that, undefined, '\t'));
-
-    //     }
-    // }
-
-    @wire(getOppList, {recordId: '$accountId'}) 
+    @wire(getOppList, {recordId: '$accId'}) 
     opportunities({error, data}){
-
-    if(data){
-
-        console.log(data);
-
-    } else if(error){
-
-        console.log(error);
-        
-    } else {
-        console.log("Account ID:");
-        console.log(this);
-        // console.log(accountId);
-        // console.log(accId);
-        // console.log(this.nameField);
-        // console.log(nameField);
+        if(data){
+            console.log(data);
+        } else if(error){
+            console.log(error);
+        } else {
+            console.log("Account ID:");
+            console.log(accountId)
+        }
     }
-}
 
 }

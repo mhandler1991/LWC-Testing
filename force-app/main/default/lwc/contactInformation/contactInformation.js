@@ -23,14 +23,14 @@ import { NavigationMixin } from 'lightning/navigation';
 // *********************
 
 // DataTable Columns
-const columns = [
-    { label: 'Id', fieldName: 'Id' },
-    { label: 'Name', fieldName: 'Name'},
-    { label: 'Title', fieldName: 'Title'},
-    { label: 'Phone', fieldName: 'Phone', type: 'phone' },
-    { label: 'Email', fieldName: 'Email', type: 'email' },
-    { label: 'Mobile', fieldName: 'MobilePhone', type: 'phone'}
-];
+// const columns = [
+//     { label: 'Id', fieldName: 'Id' },
+//     { label: 'Name', fieldName: 'Name'},
+//     { label: 'Title', fieldName: 'Title'},
+//     { label: 'Phone', fieldName: 'Phone', type: 'phone' },
+//     { label: 'Email', fieldName: 'Email', type: 'email' },
+//     { label: 'Mobile', fieldName: 'MobilePhone', type: 'phone'}
+// ];
 
 // *********************
 // EXPORT
@@ -41,7 +41,7 @@ export default class ContactInformation extends LightningElement {
     @track activeSections = ['A', 'B']; //Default Open Accordion Sections 
     @api recordId; // Grab the Record Id
     @api objectApiName; // Grab the Objects API Name
-    @track columns = columns; // ASSIGN COLUMNS VAR
+    //@track columns = columns; // ASSIGN COLUMNS VAR
 
     @track openmodel = false; //Default Model Closed - Model Button has to be clicked
     @track sendMssg = false; //Default Model Closed - Model Button has to be clicked
