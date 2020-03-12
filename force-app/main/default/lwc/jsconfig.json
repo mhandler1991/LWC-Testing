@@ -41,6 +41,9 @@
             ],
             "c/opportunitiesOpen": [
                 "opportunitiesOpen/opportunitiesOpen.js"
+            ],
+            "c/opportunitiesClosedWonV2": [
+                "opportunitiesClosedWonV2/opportunitiesClosedWonV2.js"
             ]
         }
     },
