@@ -17,7 +17,7 @@
                 <!-- Loop Through data and display -->
                 <template for:each={contacts.data} for:item="contact">
                     <li class="slds-item" key={contact.Id}>
-                        <lightning-card title={contact.Name} href={contact.Id}>
+                        <lightning-card title={contact.Name} href={contact.Id} class="slds-m-left_xx-small slds-m-right_xx-small" variant="narrow">
                             <!-- <a href={contact.Id}>{contact.Name}</a> -->
                             <div slot="actions">
                                 <lightning-button-icon icon-name="utility:edit" variant="bare"

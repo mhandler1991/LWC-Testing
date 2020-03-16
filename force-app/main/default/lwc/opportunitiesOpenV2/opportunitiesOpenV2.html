@@ -1,36 +1,34 @@
 <template>
 
-    <lightning-card title="Funded Opportunities" icon-name="standard:opportunity">
+    <lightning-card title="Open Opportunities" icon-name="standard:opportunity">
 
-        <lightning-accordion allow-multiple-sections-open onsectiontoggle={handleSectionToggle}
-            active-section-name={activeSections}>
+        <lightning-accordion allow-multiple-sections-open onsectiontoggle={handleSectionToggle} 
+        active-section-name={activeSections}>
 
             <!-- If Opportunity Data is Returned -->
             <template if:true={opportunities.data}>
-
-                <ul class="slds-has-dividers_around-space">
 
                     <template for:each={opportunities.data} for:item="opportunity">
 
                         <lightning-accordion-section title={opportunity.Name} name={opportunity.Id} key={opportunity.Id} label={opportunity.Name}>
 
+                            <!-- Icon -->
                             <div slot="actions">
                                 <lightning-button-icon icon-name="utility:info" variant="bare"
-                                    alternative-text="Open record" onclick={navigateToRecordViewPage} value={opportunity.Id}
+                                    alternative-text="Open record" onclick={navigateToRecord} value={opportunity.Id}
                                     data-id={opportunity.Id}  target="_blank" >
                                 </lightning-button-icon>
                             </div>
 
+                            <!-- Data -->
                             <div class="slds-title__detail">
                                 <dl class="slds-dl_horizontal">
                                     <dt class="slds-dl_horizontal__label">Amount:</dt>
                                         <dd class="slds-dl_horizontal__detail">
                                             <lightning-formatted-number value={opportunity.Amount} format-style="currency" currency-code="USD"></lightning-formatted-number>
                                         </dd>
-                                    <dt class="slds-dl_horizontal__label">Funded Date:</dt>
-                                        <dd class="slds-dl_horizontal__detail">
-                                            <lightning-formatted-date-time value={opportunity.CloseDate}></lightning-formatted-date-time>
-                                        </dd>
+                                    <dt class="slds-dl_horizontal__label">Stage:</dt>
+                                        <dd class="slds-dl_horizontal__detail">{opportunity.StageName}</dd>
                                 </dl>
                             </div>
 
@@ -38,12 +36,11 @@
 
                     </template>
 
-                </ul>
-
             </template>
-    
-            <!-- If NO Opportunity Data is Returned -->
+
+            <!-- If No Opportunity Data is Returned -->
             <template if:false={opportunities.data}>
+                <h1>No Data has been returned</h1>
             </template>
 
         </lightning-accordion>

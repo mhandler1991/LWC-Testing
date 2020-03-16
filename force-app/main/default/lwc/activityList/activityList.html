@@ -1,10 +1,12 @@
 <template>
-    <lightning-card title="Task Sheet" icon-name="custom:custom22">
-        <div class="slds-m-around_medium">
+    <lightning-card title="Historical Tasks" icon-name="standard:task">
+        <div class="slds-m-around_medium" if:true={data}>
             <!-- Loop Through data and display -->
-            <h1>For Loop Example</h1>
-            <lightning-datatable key-field="id" data={data} columns={columns}>
+            <lightning-datatable key-field="id" show-row-number-column hide-checkbox-column data={data} columns={columns}>
             </lightning-datatable>
+        </div>
+        <div class="slds-m-around_medium" if:true={error}>
+            <p>Sorry there was an error</p>
         </div>
     </lightning-card>
 </template>
