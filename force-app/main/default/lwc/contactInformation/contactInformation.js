@@ -5,9 +5,13 @@
 import { LightningElement, wire, api, track } from 'lwc';
 // Import APEX Class Requirements
 import getContactList from '@salesforce/apex/ContactList_Opp.getContactList';
+// V2 w/ Contact Role Information
+import getContactList2 from '@salesforce/apex/ContactList2.getContactList';
+
 // Import Record Information
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
 import { NavigationMixin } from 'lightning/navigation';
+
 
 // import sendMessage from '@salesforce/apex/TwilioSendSMS';
 
@@ -32,6 +36,10 @@ import { NavigationMixin } from 'lightning/navigation';
 //     { label: 'Mobile', fieldName: 'MobilePhone', type: 'phone'}
 // ];
 
+import ACC_ID from '@salesforce/schema/Opportunity.AccountId';
+
+var accountId;
+
 // *********************
 // EXPORT
 // *********************
@@ -46,8 +54,47 @@ export default class ContactInformation extends NavigationMixin(LightningElement
     @track openmodel = false; //Default Model Closed - Model Button has to be clicked
     @track sendMssg = false; //Default Model Closed - Model Button has to be clicked
 
+    @track accId;
+    accountId;
+
+    @wire(getRecord, {recordId: '$recordId', fields: [ACC_ID] })
+    account({error, data}) {
+        if(data) {
+
+            this.accId = getFieldValue(data, ACC_ID);
+
+            // Log Values for Account Id of Opportunity
+            console.log("Account Id from Contact List:")
+            console.log(this.accId);
+            accountId = this.accId;
+            console.log(accountId);
+
+        } else if (error) {
+
+            // Log Error
+            console.log(error);
+        }
+    }
+
+    // ORIGINAL
+    
     @wire(getContactList, {recordId: '$recordId'}) 
     contacts;
+
+    // NEW
+
+    // @wire(getContactList2, {accountId: '$accountId', opportunityId: '$recordId' }) 
+    // contacts({error, data}){
+    //     if(data) {
+    //         console.log('Contact Query Data:');
+    //         console.log(data);
+    //     } else if(error) {
+    //         console.log('Contact Query ERROR:');
+    //         console.log(error);
+    //     } else {
+    //         console.log('Contact Query UNKNOWN')
+    //     }
+    // }
 
     // *********************
     // Modal Actions - Create Contact

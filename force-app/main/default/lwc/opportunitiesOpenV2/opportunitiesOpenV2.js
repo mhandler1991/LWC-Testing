@@ -13,6 +13,7 @@ import ACC_ID from '@salesforce/schema/Opportunity.AccountId';
 var name;
 var accountId;
 var count;
+var opportunityRecords = [];
 
 export default class OpportunitiesOpenV2 extends NavigationMixin(LightningElement) {
 
@@ -24,6 +25,8 @@ export default class OpportunitiesOpenV2 extends NavigationMixin(LightningElemen
         @track nameField;
         @track accId;
         @track count;
+        @track opportunityRecords;
+        @track activeSections = opportunityRecords; //Default Open Accordion Sections 
     
         name;
         accountId;
@@ -65,6 +68,22 @@ export default class OpportunitiesOpenV2 extends NavigationMixin(LightningElemen
             console.log(this);
             console.log(this.opportunities);
             console.log(JSON.stringify(this, null, '\t'));
+        }
+
+        // Grab related Opportunities
+        @wire(getOppList, {recordId: '$accId'}) 
+        result({error, data}) {
+            if(data){
+                console.log('Returned Open Opportunities:');
+                console.log(data);
+                console.log(JSON.stringify(data, null, '\t'));
+                var i;
+                for (i = 0; i < data.length; i++) {
+                    console.log(data[i].Id);
+                    opportunityRecords.push(data[i].Id);
+                }
+                console.log(opportunityRecords);
+            }
         }
 
         // *********************
