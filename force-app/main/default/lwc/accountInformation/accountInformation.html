@@ -2,6 +2,13 @@
 
     <lightning-card title={accountName} value={accountId} icon-name="standard:account">
 
+        <div slot="actions">
+            <lightning-button-icon icon-name="utility:edit" variant="bare"
+                alternative-text="Open record" onclick={navigateToRecordViewPage} value={accountId}
+                data-id={accountId}  target="_blank" >
+            </lightning-button-icon>
+        </div>
+
             <br>
                 <div class="slds-tile__detail">
                     <dl class="slds-dl_inline">

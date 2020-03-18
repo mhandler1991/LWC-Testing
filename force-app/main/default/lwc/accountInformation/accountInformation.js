@@ -5,6 +5,8 @@
 import { LightningElement, wire, api, track } from 'lwc';
 // Import Record Information
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
+// Import Nav
+import { NavigationMixin } from 'lightning/navigation';
 
 
 // *********************
@@ -22,6 +24,8 @@ const FIELDS = [
 ]
 
 export default class AccountInformation extends LightningElement {
+
+// export default class ContactInformation extends NavigationMixin(LightningElement) {
 
     @api recordId; // Grab the Record Id
     @api objectApiName; // Grab the Objects API Name
@@ -57,5 +61,7 @@ export default class AccountInformation extends LightningElement {
         console.log("Account Information Logging:")
         console.log(this);
     }
+
+    
 
 }
