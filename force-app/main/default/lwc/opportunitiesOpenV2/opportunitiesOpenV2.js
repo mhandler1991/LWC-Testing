@@ -63,11 +63,11 @@ export default class OpportunitiesOpenV2 extends NavigationMixin(LightningElemen
 
         // Call After Component Render
         renderedCallback(){
-            console.log("Number of Opps:");
+            // console.log("Number of Opps:");
             // console.log(_.size(opportunities));
-            console.log(this);
-            console.log(this.opportunities);
-            console.log(JSON.stringify(this, null, '\t'));
+            // console.log(this);
+            // console.log(this.opportunities);
+            // console.log(JSON.stringify(this, null, '\t'));
         }
 
         // Grab related Opportunities
