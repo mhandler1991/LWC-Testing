@@ -7,7 +7,8 @@
 
             <lightning-accordion-section title="Payment History" name="A" label="Payment History">
 
-                <div class="slds-tile__detail">
+                <!-- ORIGINAL
+                    <div class="slds-tile__detail">
                     <dl class="slds-dl_inline">
                         <dt class="slds-dl_inline__label">Amount Doc'd:</dt>
                             <dd class="slds-dl_inline__detail">{prevOppAD}</dd>
@@ -26,6 +27,47 @@
                             <dd class="slds-dl_inline__detail">{prevOppBR}</dd>                        
                     </dl>
                 </div>
+             -->
+                <dl>
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_1-of-2">
+                            <dt class="slds-dl_inline__label">Amount Doc'd:</dt>
+                                <dd class="slds-dl_inline__detail">
+                                    <lightning-formatted-number value={prevOppAD} format-style="currency" currency-code="USD"></lightning-formatted-number>
+                                </dd>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <dt class="slds-dl_inline__label">Actual Daily Payment:</dt>
+                                <dd class="slds-dl_inline__detail">
+                                    <lightning-formatted-number value={prevOppADP} format-style="currency" currency-code="USD"></lightning-formatted-number>
+                                </dd>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <dt class="slds-dl_inline__label">Docs Term:</dt>
+                                <dd class="slds-dl_inline__detail">{prevOppDT}</dd>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <dt class="slds-dl_inline__label">Balance Remaining:</dt>
+                                <dd class="slds-dl_inline__detail">
+                                    <lightning-formatted-number value={prevOppBR} format-style="currency" currency-code="USD"></lightning-formatted-number>
+                                </dd>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <dt class="slds-dl_inline__label">Payments Bounced:</dt>
+                                <dd class="slds-dl_inline__detail">{prevOppPB}</dd>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <dt class="slds-dl_inline__label">Payments Behind:</dt>
+                                <dd class="slds-dl_inline__detail">{prevOppPBehind}</dd>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <dt class="slds-dl_inline__label">Balance Paid:</dt>
+                                <dd class="slds-dl_inline__detail">
+                                    <lightning-formatted-number value={prevOppBR} format-style="currency" currency-code="USD"></lightning-formatted-number>
+                                </dd>  
+                        </div>                        
+                    </div>
+                </dl>
 
             </lightning-accordion-section>
 

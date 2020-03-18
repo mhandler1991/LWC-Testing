@@ -1,6 +1,6 @@
 <template>
 
-    <lightning-card title="Open Opportunities" icon-name="standard:opportunity">
+    <lightning-card title={title} icon-name="standard:opportunity">
 
         <lightning-accordion allow-multiple-sections-open onsectiontoggle={handleSectionToggle} 
         active-section-name={activeSections}>
@@ -23,6 +23,14 @@
                             <!-- Data -->
                             <div class="slds-title__detail">
                                 <dl class="slds-dl_horizontal">
+                                    <dt class="slds-dl_horizontal__label">Type:</dt>
+                                        <dd class="slds-dl_horizontal__detail">
+                                            {opportunity.Type}
+                                        </dd>
+                                    <dt class="slds-dl_horizontal__label">Product:</dt>
+                                        <dd class="slds-dl_horizontal__detail">
+                                            {opportunity.RecordTypeId}
+                                        </dd>
                                     <dt class="slds-dl_horizontal__label">Amount:</dt>
                                         <dd class="slds-dl_horizontal__detail">
                                             <lightning-formatted-number value={opportunity.Amount} format-style="currency" currency-code="USD"></lightning-formatted-number>

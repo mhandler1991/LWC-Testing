@@ -13,6 +13,7 @@ import ACC_ID from '@salesforce/schema/Opportunity.AccountId';
 var name;
 var accountId;
 var opportunityRecords = [];
+var count = 0;
 
 export default class OpportunitiesClosedWonV2 extends NavigationMixin(LightningElement) {
     
@@ -25,6 +26,8 @@ export default class OpportunitiesClosedWonV2 extends NavigationMixin(LightningE
     @track accId;
     @track opportunityRecords;
     @track activeSections = opportunityRecords; //Default Open Accordion Sections 
+    @track count;
+    @track title;
 
     name;
     accountId;
@@ -66,13 +69,24 @@ export default class OpportunitiesClosedWonV2 extends NavigationMixin(LightningE
             console.log(data);
             console.log(JSON.stringify(data, null, '\t'));
             var i;
+            count = 0;
             for (i = 0; i < data.length; i++) {
                 console.log(data[i].Id);
                 opportunityRecords.push(data[i].Id);
+                count ++;
             }
             console.log(opportunityRecords);
+            console.log(count);
+            this.title = count + " Funded Opportunities";
+            console.log(this.title);
         }
-    }    
+    }
+
+    renderedCallback(){
+        console.log('Funded Opps Title:');
+        console.log(this.title);
+        console.log(this);
+    }
 
     // *********************
     // ACCORDION HANDLER

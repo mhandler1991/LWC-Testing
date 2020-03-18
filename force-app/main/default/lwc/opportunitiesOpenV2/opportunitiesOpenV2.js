@@ -12,8 +12,8 @@ import ACC_ID from '@salesforce/schema/Opportunity.AccountId';
 // Define Variables
 var name;
 var accountId;
-var count;
-var opportunityRecords = [];
+var count = 0;
+var openOpportunityRecords = [];
 
 export default class OpportunitiesOpenV2 extends NavigationMixin(LightningElement) {
 
@@ -25,12 +25,12 @@ export default class OpportunitiesOpenV2 extends NavigationMixin(LightningElemen
         @track nameField;
         @track accId;
         @track count;
-        @track opportunityRecords;
-        @track activeSections = opportunityRecords; //Default Open Accordion Sections 
+        @track openOpportunityRecords;
+        @track activeSections = openOpportunityRecords; //Default Open Accordion Sections 
+        @track title;
     
         name;
         accountId;
-        count;
     
         @wire(getRecord, {recordId: '$recordId', fields: [OPP_NAME, ACC_ID] })
         account({error, data}) {
@@ -68,6 +68,9 @@ export default class OpportunitiesOpenV2 extends NavigationMixin(LightningElemen
             // console.log(this);
             // console.log(this.opportunities);
             // console.log(JSON.stringify(this, null, '\t'));
+            console.log('Title:');
+            console.log(this.title);
+            console.log(this);
         }
 
         // Grab related Opportunities
@@ -78,11 +81,16 @@ export default class OpportunitiesOpenV2 extends NavigationMixin(LightningElemen
                 console.log(data);
                 console.log(JSON.stringify(data, null, '\t'));
                 var i;
+                count = 0;
                 for (i = 0; i < data.length; i++) {
                     console.log(data[i].Id);
-                    opportunityRecords.push(data[i].Id);
+                    openOpportunityRecords.push(data[i].Id);
+                    count ++;
                 }
-                console.log(opportunityRecords);
+                console.log(openOpportunityRecords);
+                console.log(count);
+                this.title = count + " Open Opportunities";
+                console.log(this.title);
             }
         }
 
