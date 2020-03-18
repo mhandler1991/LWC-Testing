@@ -1,5 +1,5 @@
 <template>
-    <lightning-card title="Historical Tasks" icon-name="standard:task">
+    <lightning-card title="All Tasks" icon-name="standard:task">
         <div class="slds-m-around_medium" if:true={data}>
             <!-- Loop Through data and display -->
             <lightning-datatable key-field="id" show-row-number-column hide-checkbox-column data={data} columns={columns}>
