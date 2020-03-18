@@ -3,7 +3,7 @@
     <lightning-card title="Related Contacts" value={accountId} icon-name="standard:contact">
 
         <div slot="actions">
-            <lightning-button-icon icon-name="utility:new" variant="bare" alternative-text="Open record" size="Large"
+            <lightning-button-icon icon-name="utility:adduser" variant="bare" alternative-text="New Contact" size="Large"
                 onclick={openmodal}>
             </lightning-button-icon>
         </div>
@@ -19,12 +19,14 @@
                     <li class="slds-item" key={contact.Id}>
                         <lightning-card title={contact.Name} href={contact.Id} class="slds-m-left_xx-small slds-m-right_xx-small" variant="narrow">
                             <!-- <a href={contact.Id}>{contact.Name}</a> -->
+
                             <div slot="actions">
                                 <lightning-button-icon icon-name="utility:edit" variant="bare"
                                     alternative-text="Open record" onclick={navigateToRecordViewPage} value={contact.Id}
                                     data-id={contact.Id}  target="_blank" >
                                 </lightning-button-icon>
                             </div>
+
                             <div class="slds-tile__detail">
                                 <dl class="slds-dl_horizontal">
                                     <dt class="slds-dl_horizontal__label">Title:</dt>

@@ -1,41 +1,97 @@
 <template>
     <lightning-card>
 
-            <!-- <lightning-progress-indicator current-step="3" type="path" variant="base">
-                <lightning-progress-step label="Contacted" value="1"></lightning-progress-step>
-                <lightning-progress-step label="Open" value="2"></lightning-progress-step>
-                <lightning-progress-step label="Unqualified" value="3"></lightning-progress-step>
-                <lightning-progress-step label="Nurturing" value="4"></lightning-progress-step>
-                <lightning-progress-step label="Closed" value="5"></lightning-progress-step>
-            </lightning-progress-indicator> -->
-
         <div class="slds-grid slds-gutters">
-            <div class="slds-col slds-size_2-of-3 lbg">
-                   
-                <div class="slds-align_absolute-center lbg">
 
-                    <lightning-button-group class="lbg">
-                        <lightning-button if:true={stage3} label="Send Funding Options"></lightning-button>
-                        <lightning-button if:true={stage2} label="Create Exception Request"></lightning-button>
-                        <lightning-button if:true={stage0} label="Application"></lightning-button>
-                        <lightning-button if:true={stage0} label="Send DLP"></lightning-button>
-                    </lightning-button-group>
-                
-                </div>                    
+            <div class="slds-col slds-size_3-of-3 lbg">
+
+                <!-- Progress Bar -->
+                <lightning-progress-indicator current-step={currentStage} type="path" variant="base">
+                    <template for:each={steps} for:item="step">
+                        <lightning-progress-step label={step.label} value={step.value} key={step.label}>
+                        </lightning-progress-step>
+                    </template>
+                </lightning-progress-indicator>
 
             </div>
-            <div class="slds-col slds-size_1-of-3 lbg">
-                <lightning-card>
-                    <lightning-file-upload
-                            label="Attach receipt"
-                            name="fileUploader"
-                            accept={acceptedFormats}
-                            record-id={recordId}
-                            onuploadfinished={handleUploadFinished}
-                            multiple>
-                    </lightning-file-upload>
-                </lightning-card>
+
+        </div>
+
+        <!-- Hoizontal Spacing -->
+        <!-- <hr> -->
+
+        <div class="slds-grid slds-gutters" style="padding-top: 15px;">
+
+            <!-- File Uploader -->
+            <div class="slds-col slds-size_2-of-4 lbg">
+
+                <div class="slds-align_absolute-center">
+
+
+                    <!-- ORIGINAL -->
+                    <lightning-card>
+                        <lightning-file-upload
+                                label=""
+                                name="fileUploader"
+                                accept={acceptedFormats}
+                                record-id={recordId}
+                                onuploadfinished={handleUploadFinished}
+                                multiple
+                                >
+                        </lightning-file-upload>
+                    </lightning-card>
+
+
+                    <!-- <div>
+                        <div class="slds-p-around_medium lgc-bg">
+                            <lightning-input 
+                                type="file" 
+                                label="Attachments"
+                                accept={acceptedFormats}
+                                onchange={handleUploadFinished}
+                                multiple
+                                >
+                            </lightning-input>
+                        </div>
+                    </div> -->
+
+                </div>
             </div>
+
+
+            <!-- Contextual Buttons -->
+            <div class="slds-col slds-size_2-of-4 lbg" style="position: relative;">
+
+                <div class="slds-align_absolute-center" style="position: absolute; bottom: 0;">
+
+                    <!-- <lightning-button-group class="lbg">
+                        <lightning-button if:true={stage3} label="Send Funding Options" class="slds-button slds-button_brand"></lightning-button>
+                        <lightning-button if:true={stage2} label="Create Exception Request" class="slds-button slds-button_brand"></lightning-button>
+                        <lightning-button if:true={stage0} label="Application" class="slds-button slds-button_brand"></lightning-button>
+                        <lightning-button if:true={stage0} label="Send DLP" class="slds-button slds-button_brand"></lightning-button>
+                    </lightning-button-group> -->
+
+                    <ul class="slds-button-group-row">
+                        <li class="slds-button-group-item">
+                            <button if:true={stage3} class="slds-button slds-button_neutral">Send Funding
+                                Options</button>
+                        </li>
+                        <li class="slds-button-group-item">
+                            <button if:true={stage2} class="slds-button slds-button_brand">Create Exception
+                                Request</button>
+                        </li>
+                        <li class="slds-button-group-item">
+                            <button if:true={stage0} class="slds-button slds-button_brand">Application</button>
+                        </li>
+                        <li class="slds-button-group-item">
+                            <button if:true={stage0} class="slds-button slds-button_brand">Send DLP</button>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+
         </div>
     </lightning-card>
 </template>
