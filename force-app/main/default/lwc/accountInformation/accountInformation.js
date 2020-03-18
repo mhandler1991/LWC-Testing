@@ -23,7 +23,7 @@ const FIELDS = [
     // 'Opportunity.Account.BillingAddress',
 ]
 
-export default class AccountInformation extends LightningElement {
+export default class AccountInformation extends NavigationMixin(LightningElement) {
 
 // export default class ContactInformation extends NavigationMixin(LightningElement) {
 
@@ -62,6 +62,20 @@ export default class AccountInformation extends LightningElement {
         console.log(this);
     }
 
-    
+    // *********************
+    // Open SubTab
+    // *********************
+    navigateToRecordViewPage(event) {
+        console.log('Account Edit Button Clicked!');
+        console.log(event.target.dataset.id);s
+        this[NavigationMixin.Navigate]({
+            type: 'standard__recordPage',
+            attributes: {
+                recordId: event.target.dataset.id,
+                objectApiName: 'Account',
+                actionName: 'view'
+            },
+        });
+    }
 
 }
